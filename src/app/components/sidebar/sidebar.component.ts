@@ -84,6 +84,19 @@ export class SidebarComponent implements OnInit {
       return true;
   };
   
+  loadUser() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+
+    if (userData) {
+      this.user = {
+        userType: userData.userType,
+        userData: userData.userData
+      };
+    } else {
+      console.error('Aucune information utilisateur trouvée dans le localStorage.');
+    }
+  }
+
   deConnecter(){
   //  this.authService.deconnecter();
   //  this.authService.triggerUpdate();

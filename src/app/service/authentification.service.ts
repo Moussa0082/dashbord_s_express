@@ -49,37 +49,46 @@ export class AuthentificationService {
     }
   }
 
-  setUserInfo(response: any): void {
-    switch (response.userType) {
-      case 'Admin':
-        this.adminService.setAdminConnect(response.data);
-        break;
-      case 'SuperAdmin':
-        this.superAdminService.setSuperAdminConnect(response.data);
-        break;
-      case 'Agent':
-        this.agentService.setAgentConnect(response.data);
-        break;
-      default:
-        console.error('Type d\'utilisateur non pris en charge :', response.userType);
-        break;
-    }
-  }
+  // setUserInfo(response: any): void {
+  //   if (response && response.userType) {
+  //     switch (response.userType) {
+  //       case 'Admin':
+  //         this.adminService.setAdminConnect(response);
+  //         break;
+  //       case 'SuperAdmin':
+  //         this.superAdminService.setSuperAdminConnect(response);
+  //         break;
+  //       case 'Agent':
+  //         this.agentService.setAgentConnect(response);
+  //         break;
+  //       default:
+  //         console.error('Type d\'utilisateur non pris en charge :', response.userType);
+  //         break;
+  //     }
+  //   } else {
+  //     console.error('Aucune information utilisateur trouvée dans la réponse.');
+  //   }
+  // }
 
     // Méthode pour récupérer les informations de l'utilisateur
     getLoggedInUserInfo(): any {
       const userData = JSON.parse(localStorage.getItem('userData'));
     
-      switch (userData.userType) {
-        case 'Admin':
-          return this.adminService.getAdminConnect();
-        case 'SuperAdmin':
-          return this.superAdminService.getSuperAdminConnect();
-        case 'Agent':
-          return this.agentService.getAgentConnect();
-        default:
-          console.error('Type d\'utilisateur non pris en charge :', userData ? userData.userType : 'undefined');
-          return null;
+      if (userData) {
+        switch (userData.userType) {
+          case 'Admin':
+            return this.adminService.getAdminConnect();
+          case 'SuperAdmin':
+            return this.superAdminService.getSuperAdminConnect();
+          case 'Agent':
+            return this.agentService.getAgentConnect();
+          default:
+            console.error('Type d\'utilisateur non pris en charge :', userData.userType);
+            return null;
+        }
+      } else {
+        console.error('Aucune information utilisateur trouvée dans le localStorage.');
+        return null;
       }
     }
 

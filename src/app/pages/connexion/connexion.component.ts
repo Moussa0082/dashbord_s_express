@@ -65,10 +65,15 @@ export class ConnexionComponent implements OnInit {
     this.authService.login(email, motDePasse , userType).subscribe(
       (response: any) => {
         // Gérer la connexion réussie ici
-        console.log(response.data);
+        console.log(response, userType);
 
-        // Stocker les informations de l'utilisateur dans localStorage
-        localStorage.setItem('userData', JSON.stringify(response));
+      // Stocker les informations de l'utilisateur dans localStorage
+      localStorage.setItem('userData', JSON.stringify({
+        userType: userType,
+        userData: response, // Assurez-vous que la structure de votre réponse est correcte
+      }));
+
+      console.log("userType", localStorage.getItem('userData'));
         
         // Rediriger vers le tableau de bord
         this.router.navigate(['/tableaudebord']);

@@ -69,8 +69,8 @@
      <div class="image">
         <img src="../../../assets/img/profil.png" alt="">
     </div>
-    <div class="nom">
-        <h6> {{user?.prenom}}<strong>{{user?.nom?.toUpperCase()}}</strong></h6>
+    <div class="nom" *ngIf="user">
+        <h6> {{user.userData.prenom}}<strong>{{user.userData.nom?.toUpperCase()}}</strong></h6>
     </div>
     <div class="icon">
         <!-- <i class="fas fa-sign-out"></i> -->

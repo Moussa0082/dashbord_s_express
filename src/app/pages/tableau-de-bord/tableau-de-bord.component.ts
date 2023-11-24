@@ -54,7 +54,7 @@ export class TableauDeBordComponent implements OnInit {
     // this.loadEtudiantList();
     // this.totalAbonner();
     // this.sommetotalAbonne();
-
+   console.log(this.authService.getLoggedInUserInfo);
     this.niveauService.update$.subscribe(() => {
       this.loadNiveauList();
     });

@@ -9,6 +9,8 @@ import { Admin } from 'app/model/admin';
 import { AdministrateurService } from 'app/service/administrateur.service';
 import { AgentService } from 'app/service/agent.service';
 import { SuperAdminService } from 'app/service/super-admin.service';
+import { SuperAdmin } from 'app/model/super-admin';
+import { Agent } from 'app/model/agent';
 
 @Component({
   selector: 'app-navbar',
@@ -26,7 +28,7 @@ export class NavbarComponent implements OnInit {
   // adminConnecter: Admin|undefined;
   isBlankPage: boolean = false;
   isLoginPage: boolean = false;
-  user: any;
+  user: Admin | SuperAdmin | Agent | any;
 
     constructor(location: Location,private authService: AuthentificationService , private element: ElementRef, private router: Router, private enseignantService: EnseigantService, private adminService:AdministrateurService, private agentService:AgentService, private superAdminService:SuperAdminService) {
       this.location = location;
@@ -60,10 +62,11 @@ export class NavbarComponent implements OnInit {
          }
      });
 
+     this.user = this.authService.getLoggedInUserInfo();
+
+     console.log("data",this.user);
      this.authService.update$.subscribe(() => {
       // this.adminConnecter = this.authService.getAdminConnect();
-      // this.user = this.authService.getUserInfo();
-      console.log(this.user);
 
     });
 
@@ -73,32 +76,32 @@ export class NavbarComponent implements OnInit {
 
     // const userData = JSON.parse(localStorage.getItem('userData'));
 
-    const userData = this.authService.getLoggedInUserInfo();
+    // const userData = this.authService.getLoggedInUserInfo();
 
-    // Utiliser le rôle de l'utilisateur pour personnaliser le contenu
-    if (userData) {
-      switch (userData.userType) {
-        case 'Admin':
-          // Code spécifique pour les administrateurs
-          this.user = userData.admin;
-          break;
-        case 'SuperAdmin':
-          // Code spécifique pour les super-administrateurs
-          this.user = userData.superAdmin;
-          break;
-        case 'Agent':
-          // Code spécifique pour les agents
-          this.user = userData.agent;
-          break;
-        default:
-          console.error('Type d\'utilisateur non pris en charge :', userData.userType);
-          break;
-      }
-    } else {
-      console.error('Aucune information utilisateur trouvée dans le localStorage.');
-    }
+    // // Utiliser le rôle de l'utilisateur pour personnaliser le contenu
+    // if (userData) {
+    //   switch (userData.userType) {
+    //     case 'Admin':
+    //       // Code spécifique pour les administrateurs
+    //       this.user = userData.admin;
+    //       break;
+    //     case 'SuperAdmin':
+    //       // Code spécifique pour les super-administrateurs
+    //       this.user = userData.superAdmin;
+    //       break;
+    //     case 'Agent':
+    //       // Code spécifique pour les agents
+    //       this.user = userData.agent;
+    //       break;
+    //     default:
+    //       console.error('Type d\'utilisateur non pris en charge :', userData.userType);
+    //       break;
+    //   }
+    // } else {
+    //   console.error('Aucune information utilisateur trouvée dans le localStorage.');
+    // }
   
-    console.log(this.user);
+    // console.log(this.user);
 
 }
 
