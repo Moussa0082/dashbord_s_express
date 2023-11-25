@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
 
      this.user = this.authService.getLoggedInUserInfo();
 
-     console.log("data",this.user);
+     console.log("data", localStorage.getItem('userData'));
      this.authService.update$.subscribe(() => {
       // this.adminConnecter = this.authService.getAdminConnect();
 

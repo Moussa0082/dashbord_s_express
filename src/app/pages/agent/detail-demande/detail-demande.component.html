@@ -42,10 +42,10 @@
  
      <div class="foor" style="display: flex; justify-content: center;" >
       <div class="rejeter">
-         <button style="background-color: red; color: white; margin-top: 20px; border: none; border-radius: 20px; width: 150px; margin-left: -60px;" > <i class="fa fa-close"></i> Rejeter</button>
+         <button style="background-color: red; color: white; margin-top: 20px; border: none; border-radius: 20px; width: 150px; margin-left: -60px;" (click)="rejeterDemande(demandeDetails.idDemande)"> <i class="fa fa-close"></i> Rejeter</button>
       </div>
       <div class="valider">
-         <button style="background-color: green; color: white; margin-top: 20px; border-radius: 20px; width: 150px; margin-left: 60px; border: none;" (click)="validerDemande(this.agentService.getAgentConnect().idAgent)"> <i class="fa fa-check"></i> Valider</button>
+         <button style="background-color: green; color: white; margin-top: 20px; border-radius: 20px; width: 150px; margin-left: 60px; border: none;" (click)="validerDemande(demandeDetails.idDemande)"> <i class="fa fa-check"></i> Valider</button>
       </div>
      </div>
  

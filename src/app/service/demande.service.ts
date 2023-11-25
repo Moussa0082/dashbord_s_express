@@ -36,6 +36,11 @@ export class DemandeService {
     return this.http.put(url, {});
   }
 
+  rejeterDemande(demandeId: number, agentId: number): Observable<any> {
+    const url = `http://localhost:8080/demandes/rejeter/${demandeId}/${agentId}`;
+    return this.http.put(url, {});
+  }
+
   triggerUpdate() {
     this.updateEvent.next();
   }

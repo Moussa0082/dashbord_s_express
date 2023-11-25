@@ -48,13 +48,12 @@ export class TableauDeBordComponent implements OnInit {
     }
     
   ngOnInit() {
-    console.log("id====",localStorage.getItem("idAdministrateur"));
+    console.log("data====",localStorage.getItem("userData"));
     // this.loadEnseignantList();
     // this.counten();
     // this.loadEtudiantList();
     // this.totalAbonner();
     // this.sommetotalAbonne();
-   console.log(this.authService.getLoggedInUserInfo);
     this.niveauService.update$.subscribe(() => {
       this.loadNiveauList();
     });

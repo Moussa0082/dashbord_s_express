@@ -73,9 +73,9 @@ export class AuthentificationService {
     // Méthode pour récupérer les informations de l'utilisateur
     getLoggedInUserInfo(): any {
       const userData = JSON.parse(localStorage.getItem('userData'));
-    
-      if (userData) {
-        switch (userData.userType) {
+      const userType = userData.userType;
+      if (userType) {
+        switch (userType) {
           case 'Admin':
             return this.adminService.getAdminConnect();
           case 'SuperAdmin':

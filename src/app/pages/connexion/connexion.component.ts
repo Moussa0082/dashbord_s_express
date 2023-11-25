@@ -69,8 +69,8 @@ export class ConnexionComponent implements OnInit {
 
       // Stocker les informations de l'utilisateur dans localStorage
       localStorage.setItem('userData', JSON.stringify({
-        userType: userType,
-        userData: response, // Assurez-vous que la structure de votre réponse est correcte
+       
+        userData: response,  userType, // Assurez-vous que la structure de votre réponse est correcte
       }));
 
       console.log("userType", localStorage.getItem('userData'));
